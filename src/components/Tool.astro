@@ -1,0 +1,29 @@
+---
+/**
+ * Renders one tool with its page defaults: `ticket` (which ticket have I got), `countdown`
+ * (props: mode 'council' | 'private', area, service, nation), `letter` (props: kind) or `mini:<spec>`
+ * from `lib/mini-specs.ts`.
+ */
+import TicketCheck from './calc/TicketCheck';
+import Countdown from './calc/Countdown';
+import AppealLetter from './calc/AppealLetter';
+import MiniSim from './calc/MiniSim';
+import { route, hasRoute, type Locale } from '../i18n/routes';
+import { getSpec } from '../lib/mini-specs';
+import type { ToolDef } from '../lib/guide-types';
+interface Props { tool: ToolDef; lang?: Locale; primary?: boolean; idPrefix?: string; seedKey?: string }
+const { tool, lang = 'en', primary = false, idPrefix } = Astro.props;
+const props = (tool.props ?? {}) as Record<string, any>;
+const kind = tool.kind;
+const mini = kind.startsWith('mini:') ? kind.slice(5) : null;
+const spec = mini ? getSpec(mini) : null;
+const href = spec?.ctaPage && hasRoute(spec.ctaPage, lang) ? route(spec.ctaPage, lang) : undefined;
+const numDefaults: Record<string, number> = {};
+for (const [k, v] of Object.entries(props)) if (typeof v === 'number') numDefaults[k] = v;
+const verdictPages = ['parking-charge-notice', 'penalty-charge-notice', 'pcn-vs-parking-charge-notice', 'fixed-penalty-notice', 'red-route-pcn'];
+const links = Object.fromEntries(verdictPages.filter((p) => hasRoute(p, lang)).map((p) => [p, route(p, lang)]));
+---
+{kind === 'ticket' && <TicketCheck client:load idPrefix={idPrefix ?? (primary ? 'tc' : 'tc2')} issuer={props.issuer ?? 'private'} nation={props.nation ?? 'england'} links={links} primary={primary} />}
+{kind === 'countdown' && <Countdown client:load idPrefix={idPrefix ?? (primary ? 'cd' : 'cd2')} mode={props.mode ?? 'council'} area={props.area ?? 'outside-london'} service={props.service ?? 'windscreen'} nation={props.nation ?? 'england'} primary={primary} />}
+{kind === 'letter' && <AppealLetter client:load idPrefix={idPrefix ?? (primary ? 'al' : 'al2')} kind={props.kind ?? 'private'} primary={primary} />}
+{mini && <MiniSim client:load kind={mini} href={href} defaults={numDefaults} primary={primary} idPrefix={idPrefix ?? (primary ? 'p' : 'm')} />}

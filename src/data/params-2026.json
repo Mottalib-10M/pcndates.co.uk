@@ -1,0 +1,478 @@
+{
+ "_lisezmoi": "Every rule, amount and time limit used by the site lives here, never typed in a page (RECETTE §4). Each value was read on the official source named in `sources` on retrieved_at. Bank holidays: GOV.UK bank-holidays.json (OGL v3.0).",
+ "year": 2026,
+ "retrieved_at": "2026-10-26",
+ "sources": {
+  "govuk_tickets": {
+   "url": "https://www.gov.uk/parking-tickets",
+   "label": {
+    "en": "GOV.UK: Parking tickets (paying, challenging and appealing council and private tickets), updated 23 January 2025"
+   }
+  },
+  "tma2004": {
+   "url": "https://www.legislation.gov.uk/ukpga/2004/18/part/6",
+   "label": {
+    "en": "Traffic Management Act 2004, Part 6 (civil enforcement of traffic contraventions)"
+   }
+  },
+  "si2022_71": {
+   "url": "https://www.legislation.gov.uk/uksi/2022/71",
+   "label": {
+    "en": "SI 2022/71: Civil Enforcement of Road Traffic Contraventions (Approved Devices, Charging Guidelines and General Provisions) (England) Regulations 2022, regs 3, 5, 10, 20 to 23"
+   }
+  },
+  "si2022_71_sch3": {
+   "url": "https://www.legislation.gov.uk/uksi/2022/71/schedule/3",
+   "label": {
+    "en": "SI 2022/71, Schedule 3: penalty charge levels and removal, storage and disposal charges outside London"
+   }
+  },
+  "si2022_576": {
+   "url": "https://www.legislation.gov.uk/uksi/2022/576",
+   "label": {
+    "en": "SI 2022/576: Civil Enforcement of Road Traffic Contraventions (Representations and Appeals) (England) Regulations 2022, regs 3 to 7"
+   }
+  },
+  "busguidance": {
+   "url": "https://www.gov.uk/government/publications/bus-lane-and-moving-traffic-enforcement-outside-london/traffic-management-act-2004-statutory-guidance-for-local-authorities-outside-london-on-civil-enforcement-of-bus-lane-and-moving-traffic-contravention",
+   "label": {
+    "en": "DfT: statutory guidance on civil enforcement of bus lane and moving traffic contraventions outside London"
+   }
+  },
+  "london_levels": {
+   "url": "https://www.lewisham.gov.uk/myservices/parking/parking-enforcement/penalty-charge-notice-charges",
+   "label": {
+    "en": "London Borough of Lewisham: penalty charge notice charges from 7 April 2025 (London-wide bands set by London Councils, approved by the Mayor)"
+   }
+  },
+  "tfl_red": {
+   "url": "https://tfl.gov.uk/modes/driving/pay-a-pcn",
+   "label": {
+    "en": "Transport for London: pay a penalty charge notice (red route PCN £160, £80 within 14 days)"
+   }
+  },
+  "wales": {
+   "url": "https://www.legislation.gov.uk/wsi/2008/613",
+   "label": {
+    "en": "WSI 2008/613: Civil Enforcement of Parking Contraventions (Guidelines on Levels of Charges) (Wales) Order 2008"
+   }
+  },
+  "scot_levels": {
+   "url": "https://www.transport.gov.scot/publication/decriminalised-parking-enforcement-dpe-report-2024-2025/penalty-charges/",
+   "label": {
+    "en": "Transport Scotland: Decriminalised Parking Enforcement report 2024-25, penalty charges"
+   }
+  },
+  "scot_consult": {
+   "url": "https://www.transport.gov.scot/consultation/penalty-charge-notice-pcn-levels-for-decriminalised-parking-enforcement/",
+   "label": {
+    "en": "Transport Scotland: consultation on penalty charge notice levels for decriminalised parking enforcement"
+   }
+  },
+  "scot_tribunal": {
+   "url": "https://www.generalregulatorychamber.scot/home/transportappeals/before-you-appeal",
+   "label": {
+    "en": "First-tier Tribunal for Scotland, General Regulatory Chamber: parking and bus lane appeals, before you appeal"
+   }
+  },
+  "ni_pcn": {
+   "url": "https://www.nidirect.gov.uk/articles/parking-tickets-penalty-charge-notices",
+   "label": {
+    "en": "nidirect: parking tickets (penalty charge notices) in Northern Ireland"
+   }
+  },
+  "ni_bus": {
+   "url": "https://www.nidirect.gov.uk/articles/bus-lane-penalty-charge-notices-pcns",
+   "label": {
+    "en": "nidirect: bus lane penalty charge notices"
+   }
+  },
+  "pofa4": {
+   "url": "https://www.legislation.gov.uk/ukpga/2012/9/schedule/4",
+   "label": {
+    "en": "Protection of Freedoms Act 2012, Schedule 4: recovery of unpaid parking charges (England and Wales), paras 3 to 9, 13 and 14"
+   }
+  },
+  "pofa54": {
+   "url": "https://www.legislation.gov.uk/ukpga/2012/9/section/54",
+   "label": {
+    "en": "Protection of Freedoms Act 2012, section 54: offence of immobilising or moving vehicles without lawful authority"
+   }
+  },
+  "pcopa2019": {
+   "url": "https://www.legislation.gov.uk/ukpga/2019/8",
+   "label": {
+    "en": "Parking (Code of Practice) Act 2019, sections 1 to 3"
+   }
+  },
+  "code2026": {
+   "url": "https://www.gov.uk/government/publications/private-parking-code-of-practice",
+   "label": {
+    "en": "MHCLG: Private Parking Code of Practice, laid before Parliament on 20 October 2026"
+   }
+  },
+  "code_em": {
+   "url": "https://www.gov.uk/government/publications/private-parking-code-of-practice-2026-explanatory-memorandum/private-parking-code-of-practice-2026-explanatory-memorandum",
+   "label": {
+    "en": "MHCLG: Private Parking Code of Practice 2026, explanatory memorandum"
+   }
+  },
+  "code_collection": {
+   "url": "https://www.gov.uk/government/collections/private-parking-code-of-practice-2026",
+   "label": {
+    "en": "GOV.UK: Private Parking Code of Practice 2026 (collection of documents)"
+   }
+  },
+  "popla": {
+   "url": "https://www.popla.co.uk/faqs",
+   "label": {
+    "en": "POPLA (Parking on Private Land Appeals): frequently asked questions"
+   }
+  },
+  "ias": {
+   "url": "https://www.theias.org/",
+   "label": {
+    "en": "Independent Appeals Service (IAS), the appeals service for members of the International Parking Community"
+   }
+  },
+  "cpr6": {
+   "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06",
+   "label": {
+    "en": "Civil Procedure Rules, Part 6 (service of documents), rule 6.14"
+   }
+  },
+  "cpr10": {
+   "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part10",
+   "label": {
+    "en": "Civil Procedure Rules, Part 10 (acknowledgment of service), rule 10.3"
+   }
+  },
+  "cpr15": {
+   "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part15",
+   "label": {
+    "en": "Civil Procedure Rules, Part 15 (defence and reply), rule 15.4"
+   }
+  },
+  "pap_debt": {
+   "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/pdf/protocols/debt-pap.pdf",
+   "label": {
+    "en": "Pre-Action Protocol for Debt Claims (PDF), paragraphs 3.1 to 4.2"
+   }
+  },
+  "tcog": {
+   "url": "https://www.legislation.gov.uk/uksi/2014/1/schedule",
+   "label": {
+    "en": "Taking Control of Goods (Fees) Regulations 2014, Schedule (fixed fees, as substituted from 1 May 2026)"
+   }
+  },
+  "nhs": {
+   "url": "https://www.gov.uk/government/publications/nhs-patient-visitor-and-staff-car-parking-principles/nhs-patient-visitor-and-staff-car-parking-principles",
+   "label": {
+    "en": "Department of Health and Social Care: NHS patient, visitor and staff car parking principles (England)"
+   }
+  },
+  "bankhol": {
+   "url": "https://www.gov.uk/bank-holidays",
+   "label": {
+    "en": "GOV.UK: UK bank holidays (England and Wales, Scotland, Northern Ireland)"
+   }
+  }
+ },
+ "england": {
+  "_src": "SI 2022/71 Schedule 3 Table 1 (outside London); regs 3(3), 5(2), 10, 20, 21, 22, 23; SI 2022/576 regs 3 to 7",
+  "band1": {
+   "higher": 60,
+   "lower": 40
+  },
+  "band2": {
+   "higher": 70,
+   "lower": 50
+  },
+  "discountPct": 50,
+  "surchargePct": 50,
+  "discountDays": 14,
+  "discountDaysCameraPost": 21,
+  "cameraServeWithinDays": 28,
+  "graceMinutes": 10,
+  "deemedServiceWorkingDays": 2,
+  "ntoAfterDays": 28,
+  "ntoLatestMonths": 6,
+  "representationsDays": 28,
+  "councilDecisionDays": 56,
+  "afterRejectionDays": 28,
+  "ccAfterDays": 28,
+  "orderAfterCcDays": 14,
+  "witnessStatementDays": 21,
+  "removal": 105,
+  "storagePerDay": 12,
+  "disposal": 50,
+  "clampRelease": 40,
+  "inForce": "2022-05-31",
+  "busWarningMonths": 6
+ },
+ "london": {
+  "_src": "London Councils bands from 7 April 2025 (Lewisham page); TfL red routes",
+  "from": "2025-04-07",
+  "bandA": {
+   "higher": 160,
+   "lower": 110
+  },
+  "bandB": {
+   "higher": 140,
+   "lower": 90
+  },
+  "busLane": 160,
+  "tflRedRoute": 160,
+  "tflCc": 240,
+  "discountPct": 50,
+  "surchargePct": 50,
+  "discountDays": 14,
+  "discountDaysCameraPost": 21
+ },
+ "wales": {
+  "_src": "WSI 2008/613 Schedule",
+  "higher": 70,
+  "lower": 50,
+  "discountPct": 50,
+  "surchargePct": 50,
+  "discountDays": 14
+ },
+ "scotland": {
+  "_src": "Transport Scotland DPE report 2024-25; GRC Scotland",
+  "max": 100,
+  "previousMax": 60,
+  "maxSince": "2023-04-01",
+  "pavementDroppedDouble": 100,
+  "discountPct": 50,
+  "discountDays": 14,
+  "surchargePct": 50,
+  "policeFpn": 30,
+  "policeFpnLate": 45,
+  "appealDays": 28,
+  "ntoAfterDays": 28,
+  "consultationClosed": "2026-01-30"
+ },
+ "ni": {
+  "_src": "nidirect parking tickets and bus lane PCN pages",
+  "pcn": 90,
+  "discounted": 45,
+  "discountDays": 14,
+  "ntoAfterDays": 28,
+  "ccAfterDays": 28,
+  "cc": 135,
+  "statDecDays": 21,
+  "payAfterAdjudicationDays": 28
+ },
+ "private": {
+  "pofa": {
+   "_src": "PoFA 2012 Sch 4 paras 4(4), 4(5), 8(5), 9(5), 13, 14",
+   "ntkAfterNtdFromDay": 29,
+   "ntkAfterNtdToDay": 56,
+   "ntkNoNtdDays": 14,
+   "keeperLiableAfterDays": 28,
+   "deemedWorkingDays": 2,
+   "hireStatementDays": 28,
+   "hirerDays": 21
+  },
+  "code": {
+   "_src": "Private Parking Code of Practice laid 20 October 2026: clauses 8.1.2, 8.2.1 to 8.2.3, 8.3.1, 8.3.7, 9.1, Annex B, Appeals Charter; Parking (Code of Practice) Act 2019 s.2",
+   "laid": "2026-10-20",
+   "scrutinyDays": 40,
+   "inForceDaysAfterIssue": 21,
+   "cap": 100,
+   "discountMinPct": 40,
+   "discountDays": 14,
+   "tariffPursuitOver": 60,
+   "appealDays": 28,
+   "operatorResponseDays": 28,
+   "discountHeldDays": 14,
+   "appealAfterPaymentDays": 30,
+   "debtRecoveryMax": 70,
+   "reducedCharge": 20,
+   "reducedChargeDays": 14,
+   "considerationMin": 5,
+   "graceMin": 10,
+   "sites": [
+    {
+     "id": "free-small",
+     "label": "Free car park, under 500 spaces",
+     "consideration": 5,
+     "grace": 10
+    },
+    {
+     "id": "free-large",
+     "label": "Free car park, over 500 spaces",
+     "consideration": 10,
+     "grace": 10
+    },
+    {
+     "id": "pay-display",
+     "label": "Pay and display",
+     "consideration": 5,
+     "grace": 10
+    },
+    {
+     "id": "pay-exit",
+     "label": "Pay on departure (barrier or ANPR)",
+     "consideration": 5,
+     "grace": 10
+    },
+    {
+     "id": "prebooked",
+     "label": "Pre-booked parking",
+     "consideration": 0,
+     "grace": 10
+    },
+    {
+     "id": "event",
+     "label": "Event parking",
+     "consideration": 5,
+     "grace": 10
+    },
+    {
+     "id": "customer",
+     "label": "Customer-only car park",
+     "consideration": 5,
+     "grace": 10
+    },
+    {
+     "id": "short-stay",
+     "label": "Short-stay car park",
+     "consideration": 5,
+     "grace": 0
+    },
+    {
+     "id": "permit",
+     "label": "Permit holders or permitted users",
+     "consideration": 5,
+     "grace": 10
+    }
+   ]
+  },
+  "popla": {
+   "_src": "POPLA FAQs",
+   "appealDays": 28,
+   "codeDigits": 10,
+   "operatorEvidenceDays": 21,
+   "commentDays": 7,
+   "payAfterDecisionDays": 28
+  }
+ },
+ "court": {
+  "_src": "CPR 6.14, 10.3, 15.4; Pre-Action Protocol for Debt Claims 3.4, 4.2",
+  "deemedServiceBusinessDays": 2,
+  "aosDays": 14,
+  "defenceDays": 14,
+  "defenceWithAosDays": 28,
+  "papReplyDays": 30,
+  "papExtraDays": 30
+ },
+ "enforcement": {
+  "_src": "Taking Control of Goods (Fees) Regulations 2014, Schedule Table 1, as substituted from 1 May 2026",
+  "from": "2026-05-01",
+  "compliance": 79,
+  "enforcement": 247,
+  "sale": 116,
+  "pctOver": 1900,
+  "pct": 7.5
+ },
+ "nhs": {
+  "_src": "NHS car parking principles (England)",
+  "frequentTimes": 3,
+  "frequentDays": 30,
+  "frequentMonths": 3,
+  "nightFrom": "7.30pm",
+  "nightTo": "8am",
+  "parentVehicles": 2
+ },
+ "bankHolidays": {
+  "ew": [
+   "2025-01-01",
+   "2025-04-18",
+   "2025-04-21",
+   "2025-05-05",
+   "2025-05-26",
+   "2025-08-25",
+   "2025-12-25",
+   "2025-12-26",
+   "2026-01-01",
+   "2026-04-03",
+   "2026-04-06",
+   "2026-05-04",
+   "2026-05-25",
+   "2026-08-31",
+   "2026-12-25",
+   "2026-12-28",
+   "2027-01-01",
+   "2027-03-26",
+   "2027-03-29",
+   "2027-05-03",
+   "2027-05-31",
+   "2027-08-30",
+   "2027-12-27",
+   "2027-12-28"
+  ],
+  "scotland": [
+   "2025-01-01",
+   "2025-01-02",
+   "2025-04-18",
+   "2025-05-05",
+   "2025-05-26",
+   "2025-08-04",
+   "2025-12-01",
+   "2025-12-25",
+   "2025-12-26",
+   "2026-01-01",
+   "2026-01-02",
+   "2026-04-03",
+   "2026-05-04",
+   "2026-05-25",
+   "2026-06-15",
+   "2026-08-03",
+   "2026-11-30",
+   "2026-12-25",
+   "2026-12-28",
+   "2027-01-01",
+   "2027-01-04",
+   "2027-03-26",
+   "2027-05-03",
+   "2027-05-31",
+   "2027-08-02",
+   "2027-11-30",
+   "2027-12-27",
+   "2027-12-28"
+  ],
+  "ni": [
+   "2025-01-01",
+   "2025-03-17",
+   "2025-04-18",
+   "2025-04-21",
+   "2025-05-05",
+   "2025-05-26",
+   "2025-07-14",
+   "2025-08-25",
+   "2025-12-25",
+   "2025-12-26",
+   "2026-01-01",
+   "2026-03-17",
+   "2026-04-03",
+   "2026-04-06",
+   "2026-05-04",
+   "2026-05-25",
+   "2026-07-13",
+   "2026-08-31",
+   "2026-12-25",
+   "2026-12-28",
+   "2027-01-01",
+   "2027-03-17",
+   "2027-03-26",
+   "2027-03-29",
+   "2027-05-03",
+   "2027-05-31",
+   "2027-07-12",
+   "2027-08-30",
+   "2027-12-27",
+   "2027-12-28"
+  ]
+ }
+}

@@ -1,0 +1,96 @@
+---
+/**
+ * Home (pillar page). The ticket checker first, then the three kinds of ticket, the deadlines, the
+ * amounts, the appeal letter and the state of the Private Parking Code, each with its tool, then
+ * every page of the site. Every figure is read from params-2026.json through the helpers.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Tool from './Tool.astro';
+import Clamp from './Clamp.astro';
+import Sources from './Sources.astro';
+import { route } from '../i18n/routes';
+import { PAGES } from '../lib/guides';
+import { GROUPS_ORDER, groupLabel } from '../i18n/nav';
+import { helpers } from '../lib/helpers';
+import { LAST_UPDATED, AUTHOR_NAME } from '../data/site-config';
+import { displayDate } from '../lib/format';
+import { faqSchema, webApplicationSchema, websiteSchema, organizationSchema } from '../lib/seo';
+const lang = 'en';
+const h = helpers(lang, true);
+const { E, L, W, S, NI, CODE, POFA } = h;
+const cards = (g: (typeof GROUPS_ORDER)[number]) => PAGES.filter((p) => p.group === g).map((p) => ({ href: route(p.id, lang), name: p.en.nav, text: p.en.card }));
+const has = (id: string) => PAGES.some((p) => p.id === id);
+const link = (id: string, text: string) => (has(id) ? `<a href="${route(id, lang)}">${text}</a>` : text);
+
+const title = 'Parking Charge Notice or PCN: Which Ticket Have I Got?';
+const description = 'Council PCN, police fixed penalty or private parking charge? Four questions say what you hold, what it costs on each date and how to appeal it, in your browser.';
+const faqs = [
+  { q: 'What is the difference between a PCN and a Parking Charge Notice?', a: 'A Penalty Charge Notice comes from a council or Transport for London and is a civil penalty set by law. A Parking Charge Notice comes from a private company and is a claim under the contract formed by the car park signs. The first escalates by law to a charge certificate and enforcement agents; the second can only be enforced through a county court claim.' },
+  { q: 'Do I have to pay a private parking ticket?', a: 'It is not a fine, but it is not something to ignore either. If the signs were clear and you broke the terms, a court can order payment, plus costs. If you have grounds, appeal to the operator within 28 days, then to POPLA or the IAS. Ignoring letters only removes your chance to appeal cheaply and on time.' },
+  { q: 'How long do I have to pay a council parking ticket?', a: `In England a council PCN can be paid at half price within ${E.discountDays} days of being served, or ${E.discountDaysCameraPost} days for a camera notice sent by post. After ${E.ntoAfterDays} days unpaid, a Notice to Owner can be sent to the keeper and the full amount is due. Ignore that too and a charge certificate adds ${E.surchargePct}%.` },
+  { q: 'How much is a parking ticket in the UK in 2026?', a: `It depends on who issued it and where. Councils in England outside London charge ${h.gbp(E.band1.lower)} to ${h.gbp(E.band2.higher)}, London boroughs up to ${h.gbp(L.bandA.higher)}, Wales ${h.gbp(W.lower)} or ${h.gbp(W.higher)}, Scottish councils up to ${h.gbp(S.max)} and Northern Ireland ${h.gbp(NI.pcn)}. Private charges will be capped at ${h.gbp(CODE.cap)} once the government Code is in force.` },
+  { q: 'Can a parking company send bailiffs?', a: 'Not for a parking charge alone. A company has no power to send enforcement agents unless it has first won a county court claim, obtained a judgment and then asked the court to enforce it. Debt collection agencies that write before that stage are only asking for payment and cannot take goods. Council penalties are different: registered debts can go to enforcement agents.' },
+  { q: 'When does the new Private Parking Code come into force?', a: `The government laid it before Parliament on ${h.date(CODE.laid)}. It can be issued only after a 40-day scrutiny period and comes into force 21 days after issue, so ${h.date(h.code.inForce)} at the earliest if Parliament does not pause the count. The government has not announced a date, and transitional arrangements will be published on GOV.UK when it applies.` },
+  { q: 'Is this site connected to a council, the DVLA or an appeals service?', a: 'No. It is published independently by Radif Partners and has no access to your notice, your vehicle record or any appeal. It reads the regulations and official pages, turns them into dates and amounts, and drafts letters you send yourself. You pay or appeal only through the website, address or telephone number printed on your own notice.' },
+];
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webApplicationSchema({ name: 'Which parking ticket have I got?', description, path: route('home', lang), lang }), faqSchema(faqs, lang)];
+const resume = `Three very different documents get called a parking fine in the UK. A Penalty Charge Notice, or PCN, is issued by a council or by Transport for London: a civil penalty whose amount is set by regulations, halved if paid within ${E.discountDays} days and increased by ${E.surchargePct}% if a charge certificate follows. A Fixed Penalty Notice is issued by the police for a parking offence: a criminal matter offered instead of prosecution. A Parking Charge Notice is sent by a private company for breaking the terms on the signs of a car park: a claim under contract, which only a county court can force you to pay, and in England and Wales one that can be pursued against the registered keeper under Schedule 4 to the Protection of Freedoms Act 2012 if its notices arrive within set dates. The checker above tells you which one you hold from what is printed on it. The rest of the site gives the date of every deadline, the amount due on each date, the appeal route and a letter to send, with every rule linked to the text it was read on.`;
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={jsonLd} faqs={faqs} breadcrumbs={[]}>
+  <header class="mb-3">
+    <h1 class="mt-0 text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">Which parking ticket have I got?</h1>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">Council PCN, police fixed penalty or private parking charge: four answers from your notice, the legal nature, the amount and the next step.</p>
+  </header>
+  <div data-outil class="mb-4"><Tool tool={{ kind: 'ticket', props: { issuer: 'private' } }} primary={true} seedKey="home" /></div>
+  <Clamp text={resume} id="clamp-home" lang={lang} class="mb-3" />
+  <p class="mb-8 text-sm text-navy-600">Rules and amounts checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time> · {AUTHOR_NAME} · <a href={route('method', lang)} class="underline hover:text-navy-900">How dates and amounts are worked out</a> · <a href={route('about', lang)} class="underline hover:text-navy-900">About this site</a></p>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Three tickets, three legal regimes</h2>
+    <p>The heading of the notice and the name of the sender are what count, not the colour of the envelope or the tone of the letter. Councils and TfL issue penalty charges under laws made by Parliament and the devolved governments. The police issue fixed penalties for offences. Parking companies issue parking charges on private land, and the government Private Parking Code bans them from copying the look or the vocabulary of a council notice.</p>
+    <Fragment set:html={h.table(['', 'Council or TfL PCN', 'Police fixed penalty', 'Private parking charge'], [
+      ['Legal basis', 'civil penalty set by law', 'criminal fixed penalty', 'contract on the signs'],
+      ['Reduced rate', `half, within ${E.discountDays} days (England)`, 'none', `at least ${CODE.discountMinPct}% off within ${CODE.discountDays} days (Code)`],
+      ['If unpaid', `Notice to Owner, charge certificate (+${E.surchargePct}%), court registration`, 'higher penalty or prosecution', 'reminders, debt letters, county court claim'],
+      ['First challenge', 'informal challenge or representations to the council', 'ask for a court hearing', `appeal to the operator within ${CODE.appealDays} days`],
+      ['Independent appeal', 'parking tribunal', 'magistrates’ court', 'POPLA or IAS'],
+    ], `England unless stated. Sources: ${h.src('si2022_71', 'SI 2022/71')}, ${h.src('govuk_tickets', 'GOV.UK parking tickets')}, ${h.src('code2026', 'Private Parking Code')}.`, ['l', 'l', 'l', 'l'])} />
+    <p>Each kind has its own page: the ${link('penalty-charge-notice', 'Penalty Charge Notice')}, the ${link('fixed-penalty-notice', 'police fixed penalty')} and the ${link('parking-charge-notice', 'Parking Charge Notice')}, with the ${link('pcn-vs-parking-charge-notice', 'differences side by side')}.</p>
+
+    <h2>Every deadline on your notice</h2>
+    <p>Most money lost on parking tickets is lost to dates, not to the ticket itself: the half-price window closes, a challenge arrives a day late, a charge certificate adds half again. The countdown below takes the date printed on a council notice and how it reached you, and lists every step with its date and the amount due at that point. In England a notice sent by post is served on the second working day after posting, which the calculator applies with the bank holidays published on GOV.UK. Download the dates to your calendar or print them.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'countdown', props: { mode: 'council' } }} idPrefix="h1" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p>For a private charge, the dates turn on Schedule 4 to the Protection of Freedoms Act 2012. After a windscreen ticket, a Notice to Keeper must reach the keeper between day ${POFA.ntkAfterNtdFromDay} and day ${POFA.ntkAfterNtdToDay}; with no windscreen ticket, within ${POFA.ntkNoNtdDays} days beginning the day after the parking ended. Outside those windows, the keeper cannot be made liable under the Schedule. The ${link('notice-to-keeper', 'Notice to Keeper checker')} tests your dates, and the ${link('pcn-deadlines', 'deadlines page')} covers council notices in each nation.</p>
+
+    <h2>What it costs, nation by nation</h2>
+    <p>Council penalty levels are fixed by regulations or approved by the relevant government, so they are the same for everyone in an area. England outside London has two bands set in Schedule 3 to SI 2022/71, each with a higher rate for serious contraventions such as parking on yellow lines and a lower rate for others such as overstaying. London boroughs charge more since ${h.date(L.from)}. Wales, Scotland and Northern Ireland have their own levels.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:pcnamount' }} idPrefix="h2" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p>The full list with the London bands, TfL red routes and removal charges is on the ${link('pcn-fine-amounts', 'PCN amounts page')}; the nations have their own pages for ${link('scotland-parking-fines', 'Scotland')}, ${link('wales-parking-fines', 'Wales')} and ${link('northern-ireland-parking-fines', 'Northern Ireland')}.</p>
+
+    <h2>Appealing: a letter in two minutes</h2>
+    <p>For a council notice in England, the grounds of appeal are listed in regulation 5 of SI 2022/576: the contravention did not occur, you were not the owner, the vehicle was taken without consent, the penalty exceeded the amount applicable, the council failed to follow the procedure, and a few more. For a private charge, the Appeals Charter of the government Code lists cases where the operator must cancel or cut the charge to ${h.gbp(CODE.reducedCharge)}. Tick what applies and copy the letter. It is a drafting aid, not legal advice, and nothing you type leaves your browser.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'letter', props: { kind: 'private' } }} idPrefix="h3" /></div>
+  <div class="prose prose-slate max-w-none">
+    <h2>The Private Parking Code of Practice</h2>
+    <p>The government laid its Private Parking Code of Practice before Parliament on ${h.date(CODE.laid)}, under the Parking (Code of Practice) Act 2019. It caps charges at ${h.gbp(CODE.cap)}, requires a reduced rate of at least ${CODE.discountMinPct}% for payment within ${CODE.discountDays} days, sets minimum consideration and grace periods, limits the debt recovery fee to ${h.gbp(CODE.debtRecoveryMax)} and lists cases where a charge must be cancelled. It covers England, Wales and Scotland. Its date of entry into force is not fixed: the Act requires a 40-day scrutiny period and then 21 days after issue, so the earliest possible date is ${h.date(h.code.inForce)}. Until then the trade associations’ own code applies.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:codedate' }} idPrefix="h4" /></div>
+  <div class="prose prose-slate max-w-none">
+    <h2>Every page of the site</h2>
+  </div>
+  <div class="not-prose grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-sommaire>
+    {GROUPS_ORDER.map((g) => (
+      <section><h3 class="mb-2 text-lg font-semibold text-navy-900">{groupLabel(g)}</h3><ul class="space-y-2 text-sm">{cards(g).map((c) => <li><a href={c.href} class="font-medium text-accent-700 underline">{c.name}</a><span class="block text-navy-700">{c.text}</span></li>)}</ul></section>
+    ))}
+  </div>
+  <div class="prose prose-slate mt-8 max-w-none">
+    <h2>How this site works</h2>
+    <p>Every amount and time limit comes from one parameter file, read on legislation.gov.uk, GOV.UK, nidirect, Transport Scotland, TfL and the appeals services on {h.date(h.P.retrieved_at)}, each value with its source. The tools run in your browser: nothing you type, not your registration, not your notice number, is sent or stored. The site takes no payment, files no appeal and recommends no firm. The <a href={route('method', lang)}>method page</a> explains how each date is counted.</p>
+    <Sources lang={lang} keys={['govuk_tickets', 'tma2004', 'si2022_71', 'si2022_576', 'pofa4', 'code2026', 'pcopa2019', 'popla', 'ni_pcn', 'scot_levels', 'london_levels', 'bankhol']} />
+  </div>
+</PageLayout>

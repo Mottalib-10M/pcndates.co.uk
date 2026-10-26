@@ -1,0 +1,23 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title={`Contact ${SITE_NAMES[lang]}: a rule, an amount, the widget`} description="Write to UK Parking Charges when an amount or a time limit looks out of date, when a page seems wrong, or to embed a ticket tool on an advice service or council website." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. A person reads every message.</p>
+    <h2>An amount or a rule looks out of date</h2>
+    <p>Tell us the rule and, if you have it, the official page or the regulation that says otherwise. Penalty levels and procedures change by regulation or by decision of a council or a government; we read the official source again, correct the parameter file and date the change.</p>
+    <h2>What we cannot do</h2>
+    <p>We are not a council, a parking operator, an appeals service or a law firm. We cannot look at your notice, appeal for you or tell you whether you will win. Please do not send notice numbers, registrations, photographs of tickets or personal details.</p>
+    <h2>Using a tool on your own site</h2>
+    <p>Advice services, libraries and community groups can show the ticket checker or the countdown in an iframe at no cost: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Updated on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

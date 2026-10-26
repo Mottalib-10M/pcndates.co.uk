@@ -1,0 +1,45 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { breadcrumbSchema, articleSchema } from '../../lib/seo';
+import { helpers } from '../../lib/helpers';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+const h = helpers(lang);
+const { E, L, W, S, NI, CODE, POFA, POPLA, C, ENF } = h;
+const s = (k: Parameters<typeof h.src>[0], t: string) => h.src(k, t);
+---
+<PageLayout title="Method of UK Parking Charges: amounts, deadlines, letters" description="How UK Parking Charges reads a ticket, counts each deadline with working days and bank holidays, sets the amount due on each date and drafts appeal letters." lang={lang} jsonLd={[articleSchema({ title: 'How amounts, deadlines and letters are worked out', description: 'Method of UK Parking Charges', path: route('method', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'Method', path: route('method', lang) }])]} breadcrumbs={[{ label: 'Method' }]}>
+  <header class="mb-6"><p class="kicker">Method</p><h1 class="mt-0 text-3xl font-bold text-navy-900 md:text-4xl">How amounts, deadlines and letters are worked out</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <p>Every page and every tool reads one parameter file of amounts and time limits, read on the official texts on {h.date(h.P.retrieved_at)}, each value with its source. No amount or number of days is typed into a page; when a rule changes, the file changes and every page follows. Automated tests check each rule against an example worked by hand from the text.</p>
+    <h2>1. Which ticket</h2>
+    <p>The checker asks who sent the notice, its heading, how it reached you and where you parked. Councils and Transport for London issue Penalty Charge Notices under Part 6 of the <Fragment set:html={s('tma2004', 'Traffic Management Act 2004')} /> in England and Wales; Scotland and Northern Ireland have their own schemes. The police issue fixed penalties. Companies issue parking charges on private land, and a company notice headed like a council notice is flagged, because the <Fragment set:html={s('code2026', 'Private Parking Code')} /> bans notices that deliberately resemble a council PCN.</p>
+    <h2>2. Counting days</h2>
+    <ul>
+      <li>A period "beginning with" a day counts that day as day one: the 14 days beginning with 2 November end on 15 November.</li>
+      <li>A notice sent by post is served or delivered on the second working day after posting, unless the contrary is shown (<Fragment set:html={s('si2022_71', 'SI 2022/71 reg 3(3)')} /> for council notices in England; <Fragment set:html={s('pofa4', 'Schedule 4 paras 8(6) and 9(6)')} /> for private notices). Working days leave out weekends and bank holidays, read from the <Fragment set:html={s('bankhol', 'GOV.UK list')} /> for each of England and Wales, Scotland and Northern Ireland, 2025 to 2027.</li>
+      <li>Where a text says "within 28 days of" without saying how to count, we count the starting day as day one, which gives the earlier, cautious date, and the tool says so.</li>
+      <li>Dates that depend on a later letter, such as the Notice to Owner, are shown as the earliest they can fall and labelled "earliest".</li>
+    </ul>
+    <h2>3. Council penalties</h2>
+    <p>England outside London: two bands from <Fragment set:html={s('si2022_71_sch3', 'Schedule 3 to SI 2022/71')} />, band 1 at {h.gbp(E.band1.higher)} or {h.gbp(E.band1.lower)} and band 2 at {h.gbp(E.band2.higher)} or {h.gbp(E.band2.lower)}; half within {E.discountDays} days of service ({E.discountDaysCameraPost} for a camera notice by post); +{E.surchargePct}% after a charge certificate; Notice to Owner after {E.ntoAfterDays} days unpaid; representations within {E.representationsDays} days, a council decision within {E.councilDecisionDays} days and then {E.afterRejectionDays} days to pay or appeal (<Fragment set:html={s('si2022_576', 'SI 2022/576')} />). London: bands A ({h.gbp(L.bandA.higher)} or {h.gbp(L.bandA.lower)}) and B ({h.gbp(L.bandB.higher)} or {h.gbp(L.bandB.lower)}) since {h.date(L.from)}, TfL red routes {h.gbp(L.tflRedRoute)} (<Fragment set:html={s('london_levels', 'London levels')} />, <Fragment set:html={s('tfl_red', 'TfL')} />). Wales: {h.gbp(W.higher)} or {h.gbp(W.lower)} (<Fragment set:html={s('wales', 'WSI 2008/613')} />). Scotland: up to {h.gbp(S.max)} since {h.date(S.maxSince)} (<Fragment set:html={s('scot_levels', 'Transport Scotland')} />); a consultation on new levels closed on {h.date(S.consultationClosed)} and no result is applied here until published. Northern Ireland: {h.gbp(NI.pcn)}, {h.gbp(NI.discounted)} within {NI.discountDays} days, {h.gbp(NI.cc)} after a charge certificate (<Fragment set:html={s('ni_pcn', 'nidirect')} />).</p>
+    <h2>4. Private parking charges</h2>
+    <p>The keeper liability dates come from <Fragment set:html={s('pofa4', 'Schedule 4 to the Protection of Freedoms Act 2012')} />: after a windscreen notice, a Notice to Keeper delivered between day {POFA.ntkAfterNtdFromDay} and day {POFA.ntkAfterNtdToDay}; without one, within {POFA.ntkNoNtdDays} days beginning the day after the parking ended; proceedings against the keeper not before {POFA.keeperLiableAfterDays} days after the Notice to Keeper. The limits come from the Private Parking Code laid on {h.date(CODE.laid)}: cap {h.gbp(CODE.cap)}, at least {CODE.discountMinPct}% off within {CODE.discountDays} days, appeal within {CODE.appealDays} days, debt recovery add-on up to {h.gbp(CODE.debtRecoveryMax)}, a {h.gbp(CODE.reducedCharge)} reduced charge in listed cases, and the consideration and grace periods of Annex B. The tools say that these limits apply once the Code is in force. The earliest date is computed from section 2 of the <Fragment set:html={s('pcopa2019', 'Parking (Code of Practice) Act 2019')} />: a 40-day period beginning with the day it was laid, then issue, then 21 days, which gives {h.date(h.code.inForce)} if Parliament does not adjourn for more than four days in that time.</p>
+    <p>Second-stage appeals: POPLA gives {POPLA.appealDays} days from the operator's rejection, with a {POPLA.codeDigits}-digit verification code (<Fragment set:html={s('popla', 'POPLA')} />). We found no single figure for the IAS that the official pages state consistently, so the IAS tool asks for the period printed in your rejection letter instead of assuming one.</p>
+    <h2>5. Court and enforcement</h2>
+    <p>A county court claim form is deemed served on the second business day after posting (<Fragment set:html={s('cpr6', 'CPR 6.14')} />); acknowledgment within {C.aosDays} days (<Fragment set:html={s('cpr10', 'CPR 10.3')} />); defence within {C.defenceDays} days, or {C.defenceWithAosDays} if you acknowledged (<Fragment set:html={s('cpr15', 'CPR 15.4')} />). A letter of claim gives {C.papReplyDays} days to reply (<Fragment set:html={s('pap_debt', 'Pre-Action Protocol for Debt Claims')} />). Enforcement agents' fees: {h.gbp(ENF.compliance)} compliance, {h.gbp(ENF.enforcement)} enforcement and {h.gbp(ENF.sale)} sale, plus {ENF.pct}% above {h.gbp(ENF.pctOver)}, from {h.date(ENF.from)} (<Fragment set:html={s('tcog', 'Taking Control of Goods (Fees) Regulations 2014')} />).</p>
+    <h2>6. Letters</h2>
+    <p>The letter builder joins sentences written by us, one per ground you tick. For council notices in England the grounds follow regulation 5(4) of SI 2022/576; for private charges they follow Schedule 4 and the Appeals Charter of the Code. The letter is a drafting aid, not legal advice: it does not judge whether a ground applies to you.</p>
+    <h2>7. Checks and updates</h2>
+    <p>A script (scripts/update-data.py) re-reads the GOV.UK bank holidays, the penalty levels of Schedule 3 to SI 2022/71 and the GOV.UK page of the Code, and stops with an error if anything differs from the parameter file, until a person has read the change. It is meant to run every month and whenever a change is announced.</p>
+    <h2>8. What the site does not do</h2>
+    <ul>
+      <li>It does not decide whether a contravention occurred, whether signs were adequate or whether an appeal will succeed.</li>
+      <li>It does not take payments, file appeals or contact councils or operators.</li>
+      <li>It does not keep anything you type: the tools run in your browser.</li>
+    </ul>
+    <p>Method version of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>. A figure that looks wrong: <a href={route('contact', lang)}>contact</a>.</p>
+  </div>
+</PageLayout>

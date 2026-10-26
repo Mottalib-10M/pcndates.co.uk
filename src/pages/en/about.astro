@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate } from '../../lib/format';
+import { PAGES } from '../../lib/guides';
+const lang = 'en';
+const n = PAGES.length + 1;
+---
+<PageLayout title="Radif Partners, publisher of UK Parking Charges: who we are" description="Who publishes UK Parking Charges, where every amount and deadline comes from, what the tools do with what you type, and what the site will never sell or push." lang={lang} jsonLd={[organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><p class="kicker">About</p><h1 class="mt-0 text-3xl font-bold text-navy-900 md:text-4xl">Who is behind {SITE_NAMES[lang]}</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>{SITE_NAMES[lang]} is published by {AUTHOR_NAME}, a company that builds free tools on public rules and public data. This site is for drivers who have found a ticket on the windscreen or a letter on the doormat and need to know, quickly, what it is, what it costs on each date and how to challenge it.</p>
+    <h2>What the site does</h2>
+    <p>It tells a council Penalty Charge Notice from a police fixed penalty and from a private Parking Charge Notice, using what is printed on the notice. It counts every deadline from the date on your notice, with the bank holidays of England and Wales, Scotland and Northern Ireland, and gives the amount due at each step. It checks whether a private Notice to Keeper arrived within the dates set by Schedule 4 to the Protection of Freedoms Act 2012. It drafts appeal letters from the grounds you tick. Everything is free, needs no account, and what you type stays in your browser.</p>
+    <h2>Where the rules come from</h2>
+    <p>From the law and from official pages only: the Traffic Management Act 2004 and its regulations for England, the Welsh order on penalty levels, the pages of Transport Scotland, the First-tier Tribunal for Scotland and nidirect, the Protection of Freedoms Act 2012, the Parking (Code of Practice) Act 2019 and the Private Parking Code of Practice laid on 20 October 2026, the Civil Procedure Rules, and the pages of POPLA and the IAS for their own procedures. Every page links to the texts behind it. The <a href={route('method', lang)}>method page</a> explains how each date is counted.</p>
+    <h2>What we are not</h2>
+    <p>We are not a council, Transport for London, the police, the DVLA, a parking operator, POPLA, the IAS, a tribunal, a law firm or a claims company. We cannot see your notice, cancel it, take a payment or file an appeal. Our letters are drafting aids, not legal advice. The site uses no official logo or crest.</p>
+    <h2>How the site is paid for</h2>
+    <p>The site sells no service, takes no commission, collects no contact details and links to no firm that handles parking appeals. If advertising is added one day, it will never sit inside a tool, and it cannot use what you type, which never leaves your browser.</p>
+    <h2>Tell us when something is wrong</h2>
+    <p>Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the page and the rule. The <a href={route('editorial', lang)}>editorial policy</a> explains how a correction is made and dated. The site has {n} pages of guides and tools.</p>
+    <p class="text-sm text-navy-600">Rules and amounts last checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>
