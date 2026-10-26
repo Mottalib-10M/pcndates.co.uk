@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://uk-parking-charges.example/sitemap-index.xml
+Sitemap: https://pcndates.co.uk/sitemap-index.xml

@@ -1,6 +1,6 @@
 {
- "name": "UK Parking Charges",
- "short_name": "UK Parking Charges",
+ "name": "PCN Dates",
+ "short_name": "PCN Dates",
  "description": "Read a UK parking ticket in a minute: council PCN or private parking charge, the amount on each date, every deadline to pay or appeal, and an appeal letter built in your browser.",
  "start_url": "/en/",
  "display": "standalone",

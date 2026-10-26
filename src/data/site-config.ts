@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://uk-parking-charges.example";
-export const SITE_NAMES: Record<string, string> = {"en": "UK Parking Charges"};
+export const SITE_URL = "https://pcndates.co.uk";
+export const SITE_NAMES: Record<string, string> = {"en": "PCN Dates"};
 // Partie du nom affichée en couleur dans l'en-tête (RECETTE §10.3), « » pour aucune.
 export const BRAND_ACCENT = "";
 export const LANG_TAGS: Record<string, string> = {"en": "en-GB"};
@@ -18,7 +18,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners reads 
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["Penalty charge notices under the Traffic Management Act 2004", "Private parking charges and Schedule 4 to the Protection of Freedoms Act 2012", "Private Parking Code of Practice 2026", "POPLA and IAS appeals", "Traffic Penalty Tribunal and London Tribunals", "Parking enforcement in Scotland and Northern Ireland"]};
-export const CONTACT_EMAIL = "contact@uk-parking-charges.example";
+export const CONTACT_EMAIL = "contact@pcndates.co.uk";
 export const THEME_COLOR = '#1E3A5F';
 export const LOGO_SYMBOL = 'P';
 export const BING_VERIFY_CODE = '';
